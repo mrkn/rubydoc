@@ -5,8 +5,8 @@
 == Instance Methods
 
 --- *(other)
-#@todo
-Multiplication with real or complex number.
+
+self と other が表す複素数をそれぞれ w = u + i*v, z = x + i*y とすると、このメソッドは積 w * z = (u*x - v*y) + i*(u*y + v*x) を返します。
 
 --- **(other)
 #@todo
@@ -14,45 +14,43 @@ Multiplication with real or complex number.
 Raise this complex number to the given (real or complex) power.
 
 --- +(other)
-#@todo
 
-Addition with real or complex number.
-
+self と other が表す複素数をそれぞれ w = u + i*v, z = x + i*y とすると、このメソッドは和 w + z = (u + x) + i*(v + y) を返します。
 --- -(other)
-#@todo
 
-Subtraction with real or complex number.
-
+self と other が表す複素数をそれぞれ w = u + i*v, z = x + i*y とすると、このメソッドは差 w - z = (u - x) + i*(v - y) を返します。
 --- -@
-#@todo
+
+self が表す複素数を z = x + i*y とすると、このメソッドは符号を反転した -z = -x - i*y を返します。
 
 --- /(other)
-#@todo
 
-Division by real or complex number.
+self と other が表す複素数をそれぞれ w = u + i*v, z = x + i*y とすると、このメソッドは商 w / z = ((u*x + v*y) - i*(u*y - v*x)) / (x*x + y*y) を返します。
+
+[注意] このメソッドの返り値は self * other.conj / self.abs**2 と理論上で等値になります。しかし、self および other が実部と虚部に持つ値によっては丸め誤差などの影響によって等しくならない場合があります。
 
 --- ==(other)
-#@todo
 
-Test for numerical equality (a == a + 0i).
+self と other が等しいときに限り true を返し、そうでない場合は false を返します。
+
+self と other が表す複素数をそれぞれ w = u + i*v, z = x + i*y とすると、w と z は u == x && v == y が真である場合に限って等値と見なされます。
 
 --- abs
-#@todo
+--- magnitude
 
-Absolute value (aka modulus): distance from the zero point on
-the complex plane.
+self が表す複素数が極形式で z = r*exp(i*th) と表されるとき、このメソッドは r を返します。
+ここで z = x + i*y のとき、r = sqrt(x*x + y*y), th = atan2(y, x) となります。
 
 --- abs2
-#@todo
 
-Square of the absolute value.
-
+self が表す複素数が z = x + i*y と表されるとき、このメソッドは x*x + y*y を返します。この値は z が z = r*exp(i*th) と極形式で表わされるとき、r*r と等値です ([[m:Complex#abs]] も参照してください)。
 
 --- angle
 --- arg
-#@todo
+--- phase
 
-Argument (angle from (1,0) on the complex plane).
+self が表す複素数が極形式で z = r*exp(i*th) と表されるとき、このメソッドは th を返します。
+ここで z = x + i*y のとき、r = sqrt(x*x + y*y), th = atan2(y, x) となります。
 
 --- coerce(other)
 #@todo
@@ -62,12 +60,11 @@ Attempts to coerce other to a Complex number.
 --- conjugate
 --- conj
 
-Complex conjugate (z + z.conjugate = 2 * z.real).
+self が表す複素数が z = x + i*y と表されるとき、このメソッドは z の共役複素数 x - i*y を返します。
 
 --- denominator
-#@todo
 
-FIXME
+1 を返します。
 
 --- eql?
 #@todo
@@ -81,18 +78,14 @@ FIXME
 Returns a hash code for the complex number.
 
 --- imag
-#@todo
-
 --- imaginary
-#@todo
+
+self が表す複素数が z = x + i*y と表されるとき、このメソッドは z の虚部 y を返します。
 
 --- inspect
 #@todo
 
 Returns "Complex(real, image)".
-
---- magnitude
-#@todo
 
 --- marshal_dump
 #@todo
@@ -101,27 +94,24 @@ Returns "Complex(real, image)".
 #@todo
 
 --- numerator
-#@todo
 
-FIXME
-
---- phase
-#@todo
+self を返します。
 
 --- polar
-#@todo
 
-Returns the absolute value and the argument.
+極形式の絶対値と偏角の配列、すなわち [self.abs, self.arg] を返します。
 
 --- quo(other)
 #@todo
 
 
 --- real
-#@todo
+
+self が表す複素数が z = x + i*y と表されるとき、このメソッドは z の実部 x を返します。
 
 --- real?
-#@todo
+
+self が表す複素数が z = x + i*y と表されるとき、このメソッドは y == 0 のときに限って true を返します。そうでない場合は false を返します。
 
 --- rect
 #@todo
